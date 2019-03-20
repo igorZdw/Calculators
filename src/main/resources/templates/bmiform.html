@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Kalkulator BMI</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="style.css"/>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Teko:400,700" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+    <section id="superform2">
+    <div><font color="black" size="5"><center><b>KALKULATOR BMI</b></center> </font> </caption></div>
+    </section>
+    <style>
+        #superform2{
+            background: #3a6186; /* fallback for old browsers */
+            background: -webkit-linear-gradient(to left, #3a6186, #89253e);
+            background: linear-gradient(to left, #3a6186, #89253e);
+            color: #fff;
+        }
+
+        #superform {
+
+            font-family: "Baskerville Old Face";
+            padding-top: 60px;
+            width: 100%;
+            width: 100vw;
+            height: 850px;
+            background: #3a6186; /* fallback for old browsers */
+            background: -webkit-linear-gradient(to left, #3a6186, #89253e);
+            background: linear-gradient(to left, #3a6186, #89253e);
+            color: #fff;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+<section id="superform">
+
+<div class="container" >
+
+    <form  class="form-inline"  th:object="${operationModel}" th:action="@{/bmi}" th:method="post" >
+        <div class="form-group" >
+            <label class="control-label">Wzrost:</label>
+            <input type="text" class="form-control" th:field="*{height}" placeholder="Wzrost w metrach"/>
+            <p th:if="${#fields.hasErrors('height')}" th:errors="*{height}"/>
+        </div>
+
+        <div class="form-group" >
+            <label class="control-label">Masa ciała:</label>
+            <input type="text" class="form-control" th:field="*{bodyweight}" placeholder="Masa ciała w kg"/>
+            <p th:if="${#fields.hasErrors('bodyweight')}" th:errors="*{bodyweight}"/>
+        </div>
+
+
+
+        <div class="row">
+            <button type="submit" class="btn-primary" name="add">Oblicz</button>
+        </div>
+        <div>
+            <font size="4">
+                Wynik: </font><span th:if="${result != null}" th:text="${result}"></span>
+        </div>
+
+    </form>
+    <div class="container">
+
+
+
+        <table class="table"  border="5" cellpadding="7" >
+            <caption align="align" ><font color="black"><center><b> ZAKRESY WARTOŚCI BMI</b></center></font> </caption>
+
+            <tbody>
+            <tr>
+                <td><b>mniej niż 16</b></td>
+                <td><b>wygłodzenie</b></td>
+            <tr>
+            <tr>
+                <td><b>16-16.99</b></td>
+                <td><b>wychudzenie</b></td>
+            <tr>
+            <tr>
+                <td><b>17-18.49</b></td>
+                <td><b>niedowaga</b></td>
+            <tr>
+            <tr>
+                <td><b>18.5-24.99</b></td>
+                <td><b>wartość prawidłowa</b></td>
+            <tr>
+            <tr>
+                <td><b>25-25.99</b></td>
+                <td><b>nadwaga</b></td>
+
+            </tr>
+            <tr>
+                <td><b>30-34.99</b></td>
+                <td><b>I stopień otyłości</b></td>
+            <tr>
+            <tr>
+                <td><b>35-39.99</b></td>
+                <td><b>II stopień otyłości</b></td>
+
+            </tr>
+            <tr>
+                <td><b>powyżej 40</b></td>
+                <td><b>otyłość skrajna</b></td>
+
+            </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
+    <div><font size="4">INNE KALKULATORY:</font></div>
+    <div class="row">
+        <a href="/breathalyser"><font size="3"> WIRTUALNY ALKOMAT</font></a>
+    </div>
+    <div class="row">
+        <a href="/bmr"><font size="3"> KALKULATOR BMR</font></a>
+    </div>
+
+</div>
+</section>
+</body>
+</html>
